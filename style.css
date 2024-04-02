@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     background-color: #000;
-    color: #fff;
+    color: black;
     font-family: 'Arial', sans-serif;
 }
 
@@ -15,73 +15,48 @@ body, html {
 h1{
     font-size: 45px;
     font-weight: bold;
+    color: white;
 }
 
 h2{
     font-style: italic;
     font-size: 30px;
+    color: white;
 }
 
 h3{
     font-size: 30px;
 }
 
-/* Fixed position moon */
-.moon {
-    width: 100px;
-    height: 100px;
-    background-color: yellow;
-    border-radius: 50%;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 0; /* Below the text */
-    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.7); /* Glow effect */
-    /* ... */
-}
-
-
-/* Crescent shape */
-.moon::before {
-    content: '';
+#moon-container {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: #000; /* Assuming the page's background is black */
-    border-radius: 50%;
-    right: 12px; /* Adjust to achieve the desired crescent shape */
-    box-shadow: inset 16px 0 10px rgba(0, 0, 0, 0.9); /* To create the shadowed part of the moon */
+    top: 10px; /* Adjust this value to ensure it doesn't overlap the text */
+    right: 10px; /* Adjust this value to place it exactly where you want it */
+    font-size: 6em; /* Size of the moon emoji */
+    z-index: 10; /* Make sure the moon is above other elements, you might need to adjust this */
+    animation: twinkle 3s infinite alternate;
 }
 
-/* Text content */
-.text-content {
-    position: relative; /* This ensures the text has a stacking context above the moon */
-    z-index: 1; /* Higher than the moon's z-index */
-    /* Your other text styles... */
+@keyframes twinkle {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
-.moon-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
-    z-index: 1; /* Above the moon but below the text */
-}
-
-.moon-text {
-    color: #FFF; /* Text color */
-    width: 100%; /* Fill the container */
-    height: 100%;
-    display: flex;
-    align-items: center; /* Center text vertically */
-    justify-content: center; /* Center text horizontally */
-    position: absolute;
-    pointer-events: none; /* Ensures clicks go through the text to the moon */
-}
 
 
 .stars-container {
+    position: relative;
+    /* Set a specific height/width if necessary */
+}
+
+.star {
+    position: absolute;
+    cursor: pointer;
+    /* Style your stars as necessary */
+}
+
+
+.stars-container{
     position: relative;
     height: 300px;
 }
@@ -117,7 +92,7 @@ h3{
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: whitesmoke;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -136,4 +111,12 @@ h3{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.footer{
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    overflow: hidden;
+    text-align: right;
 }

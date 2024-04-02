@@ -1,72 +1,54 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function () {
     const starsContainer = document.querySelector('.stars-container');
-    const modal = document.getElementById("myModal");
-    const span = document.getElementsByClassName("close")[0];
-    const modalText = document.getElementById("modal-text");
+    const modal = document.getElementById('myModal');
+    const span = document.querySelector('.close');
+    const modalText = document.getElementById('modal-text');
 
-    // Assuming you have defined your messages array correctly
+    // Messages to be displayed when stars are clicked
     const messages = [
-        "If you were a vegetable, you'd be a cute-cumber.",
-        "Do you have a map? I keep getting lost in your eyes.",
-        "Is it hot in here, or is it just you?",
-        "Aside from being sexy, what do you do for a living?",
-        "If we were stars, we'd form the most radiant constellation.",
-        //... more messages as needed
-    ];
+        "If you were a vegetable, you'd be a cute-cumber! 🌚",
+        "Do you have a map? I keep getting lost in your eyes! 🥰",
+        "Is it will be too hard to say 'YES', if I just came to you with a ring when the sky is full of twinkle stars? 😳",
+        "Aside of cooking poison 🙄, instead can you help me to make a bridge between us! 🫣",
+        "You don't need keys to drive me crazy, Just make a wish.! 🙄",
+        "Give God a call, because I’m seeing his angel down on earth!! 🦋",
+        "I thought I knew what I wanted in life, but then I met you, and now I'm certain! 🌹🌷",
+        "You're my favorite notification. Now I don't want to loose this habit being happy! 👀",
+        "In a sea of people, my eyes search for you & I feel blessed when my eyes got stuck on you in that sea wave.!! 🥹",
+        "The way of your cuteness melting me, even the ice can't even refuse that! 🫠",
+        "Beside you is my favourite place to be. Can I just stay there forever? 🦥"
+    ]
 
-
-// Now, when creating stars, make sure to use a closure to capture the current index i
-    for (let i = 0; i < messages.length; i++) {
+    // Create and style star elements, assign click event to display messages
+    for (let i = 0; i < 11; i++) {
         const star = document.createElement('div');
         star.className = 'star';
-        star.style.top = `${Math.random() * 300}px`;
-        star.style.left = `${Math.random() * window.innerWidth}px`;
+        star.style.top = `${Math.random() * 300}px`; // Randomly position the star vertically
+        star.style.left = `${Math.random() * window.innerWidth}px`; // Randomly position the star horizontally
+        star.textContent = '★'; // Star character or could be an image
 
-        // Closure to capture the value of 'i'
+        // Closure to capture the current value of 'i'
         star.addEventListener('click', (function(index) {
             return function() {
-                modal.style.display = 'block';
-                modalText.textContent = messages[index];
+                modal.style.display = 'block'; // Show the modal
+                modalText.textContent = messages[index]; // Display the message
             };
         })(i));
 
-        starsContainer.appendChild(star);
+        starsContainer.appendChild(star); // Add the star to the stars container
     }
 
-    document.addEventListener ( 'DOMContentLoaded',  function() {
-// ... Your existing code for stars ...
 
-        var moonContainer = document.querySelector(' •moon-container');
-        moonContainer.addEventListener('click', function () {
-// Your logic for what happens when the moon is clicked
-            alert("You clicked the moon's text!");
-        });
-    })
+    // Close modal when 'x' span is clicked
+    span.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
 
-
-    for (let i = 0; i <= 5; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.top = `${Math.random() * 300}px`;
-        star.style.left = `${Math.random() * window.innerWidth}px`;
-
-        star.onclick = function() {
-            modal.style.display = "block";
-            modalText.textContent = messages[i];
+    // Close modal when clicking anywhere outside of it
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
-
-        starsContainer.appendChild(star);
-    }
-
-    span.onclick =
-        function() {
-            modal.style.display = "none";
-        }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    });
 });
+
